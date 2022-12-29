@@ -1,10 +1,10 @@
 //create objects with an array of keys to be called by index
 var allQuestions = [
-    {text:"question1", choices:["a", "b", "c", "d"], correct: "a"},
-    {text:"question2", choices:["a", "b", "c", "d"], correct: "a"},
-    {text:"question3", choices:["a", "b", "c", "d"], correct: "a"},
-    {text:"question4", choices:["a", "b", "c", "d"], correct: "a"},
-    {text:"question5", choices:["a", "b", "c", "d"], correct: "a"},
+    {text:"question1", choices:["a", "b", "c", "d"], correct: "c"},
+    {text:"question2", choices:["a", "b", "c", "d"], correct: "d"},
+    {text:"question3", choices:["a", "b", "c", "d"], correct: "b"},
+    {text:"question4", choices:["a", "b", "c", "d"], correct: "c"},
+    {text:"question5", choices:["a", "b", "c", "d"], correct: "d"},
     {text:"question6", choices:["a", "b", "c", "d"], correct: "a"},
 ];
 //variable to iterate through questions
@@ -36,27 +36,41 @@ function setTimer() {
         }
     }, 1000);
 }
-function loadQuestions(arr) {
+function loadQuestions() {
     var question = allQuestions[Q].text;
    
     quizArea.innerHTML = "";
     quizArea.innerHTML = question;
     
 }
-function loadAnswers(arr) {
+function loadAnswers() {
     //var answer = allQuestions[Q].choices;
     //choiceArea.innerHTML = "";
     //choiceArea.innerHTML = answer;
     for(var i = 0; i < allQuestions[Q].choices.length; i++) {
-        var btn = document.createElement("button");
+       var btn = document.createElement("button");
+       btn.value = allQuestions[Q].choices[i];
+       btn.className = "test"
         var c = document.createTextNode(allQuestions[Q].choices[i]);
         btn.appendChild(c);
         document.querySelector(".cSpot").appendChild(btn);
     }
 
 }
-//on click show first question
-//append answer buttons to question
+
+function checkAnswer() {
+    var i = document.querySelector(".test")
+    
+    correctAnswer = allQuestions[Q].correct;
+    if (i.value === correctAnswer) {
+        alert("omgyoudidit!!11!!1!1!!")
+    } else {
+        alert("awww try again!")
+    } console.log(i)
+}
+
+//on click show first question >
+//append answer buttons to question >
 //add event listener to answer buttons
 //on click check for correct answer
 //if correct add to score
@@ -66,9 +80,11 @@ function loadAnswers(arr) {
 //collect initials 
 //save score and initials to local storage
 //when user hits high scores show list of high scores
-document.querySelector(".start-btn").addEventListener("click", startGame)
-//start timer
-document.querySelector(".start-btn").addEventListener("click", setTimer)
+//runs start game function when the start button is clicked
+document.querySelector(".start-btn").addEventListener("click", startGame);
 
-document.querySelector(".start-btn").addEventListener("click", loadQuestions)
-document.querySelector(".start-btn").addEventListener("click", loadAnswers)
+document.querySelector(".start-btn").addEventListener("click", loadQuestions);
+document.querySelector(".start-btn").addEventListener("click", loadAnswers);
+//start timer
+document.querySelector(".start-btn").addEventListener("click", setTimer);
+document.querySelector(".test").addEventListener("click", checkAnswer);
