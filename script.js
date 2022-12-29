@@ -44,10 +44,16 @@ function loadQuestions(arr) {
     
 }
 function loadAnswers(arr) {
-    var answer = allQuestions[Q].choices;
-    choiceArea.innerHTML = "";
-    choiceArea.innerHTML = answer;
-console.log(answer)
+    //var answer = allQuestions[Q].choices;
+    //choiceArea.innerHTML = "";
+    //choiceArea.innerHTML = answer;
+    for(var i = 0; i < allQuestions[Q].choices.length; i++) {
+        var btn = document.createElement("button");
+        var c = document.createTextNode(allQuestions[Q].choices[i]);
+        btn.appendChild(c);
+        document.querySelector(".cSpot").appendChild(btn);
+    }
+
 }
 //on click show first question
 //append answer buttons to question
