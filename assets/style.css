@@ -1,3 +1,21 @@
+.start {
+    text-align: center;
+}
 .hide {
     display: none;
+}
+.quiz p {
+    border: solid;
+    text-align: end;
+}
+.quiz {
+    border: dashed;
+    text-align: center;
+}
+.qSpot {
+   border: solid;
+   border-radius: 15%;
+}
+.cSpot {
+ background-color: orangered;  
 }

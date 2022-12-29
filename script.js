@@ -1,5 +1,5 @@
 //create objects with an array of keys to be called by index
-var questions = [
+var allQuestions = [
     {text:"question1", choices:["a", "b", "c", "d"], correct: "a"},
     {text:"question2", choices:["a", "b", "c", "d"], correct: "a"},
     {text:"question3", choices:["a", "b", "c", "d"], correct: "a"},
@@ -13,6 +13,9 @@ var Q = 0;
 var timeEl = document.querySelector(".timer");
 //variable used to decrease time
 var secondsLeft = 60;
+
+var quizArea = document.querySelector(".qSpot");
+var choiceArea = document.querySelector(".cSpot");
 
 function startGame(){
    // hides start screen >
@@ -33,6 +36,19 @@ function setTimer() {
         }
     }, 1000);
 }
+function loadQuestions(arr) {
+    var question = allQuestions[Q].text;
+   
+    quizArea.innerHTML = "";
+    quizArea.innerHTML = question;
+    
+}
+function loadAnswers(arr) {
+    var answer = allQuestions[Q].choices;
+    choiceArea.innerHTML = "";
+    choiceArea.innerHTML = answer;
+console.log(answer)
+}
 //on click show first question
 //append answer buttons to question
 //add event listener to answer buttons
@@ -47,3 +63,6 @@ function setTimer() {
 document.querySelector(".start-btn").addEventListener("click", startGame)
 //start timer
 document.querySelector(".start-btn").addEventListener("click", setTimer)
+
+document.querySelector(".start-btn").addEventListener("click", loadQuestions)
+document.querySelector(".start-btn").addEventListener("click", loadAnswers)
