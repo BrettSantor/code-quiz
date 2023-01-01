@@ -5,15 +5,15 @@
     display: none;
 }
 .quiz p {
-    border: solid;
+    /* border: solid; */
     text-align: end;
 }
 .quiz {
-    border: dashed;
+    /* border: dashed; */
     text-align: center;
 }
 .qSpot {
-   border: solid;
+   /* border: solid; */
    border-radius: 15%;
 }
 .cSpot {
