@@ -27,6 +27,7 @@ function startGame() {
     //show quiz screen >
     document.querySelector(".quiz").classList.remove("hide")
     //call function to load first question
+    document.querySelector(".end").classList.add("hide")
     loadQuestions();
 }
  //start score
@@ -42,6 +43,7 @@ function setTimer() {
         if (secondsLeft === 0) {
             //clearInterval method stops the called action set in place by setInterval method
             clearInterval(timerInterval);
+            endGame();
         }
     }, 1000);
 }
@@ -74,7 +76,6 @@ function loadAnswers() {
 }
 
 function checkAnswer(choice) {
-    //var i = document.querySelector(".test")
 
     correctAnswer = allQuestions[Q].correct;
     if (choice === correctAnswer) {
@@ -84,8 +85,7 @@ function checkAnswer(choice) {
     } else {
         secondsLeft -= 10
         if(secondsLeft < 0){
-            secondsLeft = 0
-            endGame()
+            secondsLeft = 0  
         }
     }
     Q++;
@@ -96,28 +96,46 @@ function checkAnswer(choice) {
     }
 }
 
+// if(secondsLeft === 0) {
+//     endGame();
+// }
+
+function namePrompt() {
+    var initScore;
+    var names= prompt("Please enter your initials:");
+    if (names == null || names == "") {
+        alert("Don't be ashamed!");
+    } else {
+        initScore = names + " " + userScore;
+        document.querySelector(".highScore").textContent = initScore;
+    }
+}
+
 function endGame() {
     document.querySelector(".quiz").classList.add("hide");
     document.querySelector(".end").classList.remove("hide");
-    document.querySelector(".yourScore").textContent= userScore
+    document.querySelector(".yourScore").textContent= userScore;
+    namePrompt();
+    
 
 }
+
 
 //on click show first question >
 //append answer buttons to question >
 //add event listener to answer buttons ? >
 //on click check for correct answer >
-//if correct add to score
-//if wrong decrement timer -10 seconds
-//show next question
+//if correct add to score >
+//if wrong decrement timer -10 seconds >
+//show next question >
 //when out of  questions or out of time end game
 //collect initials 
 //save score and initials to local storage
 //when user hits high scores show list of high scores
+
 //runs start game function when the start button is clicked
 document.querySelector(".start-btn").addEventListener("click", startGame);
-
-
+document.querySelector(".again").addEventListener("click", startGame);
 //document.querySelector(".start-btn").addEventListener("click", loadAnswers);
 //start timer
 document.querySelector(".start-btn").addEventListener("click", setTimer);
