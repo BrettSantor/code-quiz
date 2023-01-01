@@ -28,6 +28,7 @@ function startGame() {
     document.querySelector(".quiz").classList.remove("hide")
     //call function to load first question
     document.querySelector(".end").classList.add("hide")
+    
     loadQuestions();
 }
  //start score
@@ -37,6 +38,7 @@ function setScore() {
 //create timer >
 function setTimer() {
     //setInterval method repeatedly executes code with a fixed delay each execution
+    
     var timerInterval = setInterval(function () {
         secondsLeft--;
         timeEl.textContent = secondsLeft;
@@ -47,7 +49,13 @@ function setTimer() {
         }
     }, 1000);
 }
+
+function stopInterval(){
+    clearInterval(setTimer)
+}
+
 function loadQuestions() {
+    
     var question = allQuestions[Q].text;
 
     quizArea.innerHTML = "";
@@ -90,6 +98,7 @@ function checkAnswer(choice) {
     }
     Q++;
     if (Q === allQuestions.length) {
+    
         endGame()
     } else {
         loadQuestions();
@@ -116,8 +125,15 @@ function endGame() {
     document.querySelector(".end").classList.remove("hide");
     document.querySelector(".yourScore").textContent= userScore;
     namePrompt();
-    
-
+    // Q = 0;
+    // secondsLeft = 60;
+}
+function roundTwo() {
+    stopInterval();
+    Q = 0;
+    secondsLeft = 60;
+    userScore = 0;
+    startGame();
 }
 
 
@@ -135,7 +151,9 @@ function endGame() {
 
 //runs start game function when the start button is clicked
 document.querySelector(".start-btn").addEventListener("click", startGame);
-document.querySelector(".again").addEventListener("click", startGame);
+document.querySelector(".again").addEventListener("click", roundTwo);
 //document.querySelector(".start-btn").addEventListener("click", loadAnswers);
 //start timer
 document.querySelector(".start-btn").addEventListener("click", setTimer);
+// document.querySelector(".again").addEventListener("click", clearInterval)
+// document.querySelector(".again").addEventListener("click", setTimer)
