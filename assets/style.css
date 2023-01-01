@@ -12,6 +12,9 @@
     /* border: dashed; */
     text-align: center;
 }
+.end p {
+text-align: center;
+}
 .qSpot {
    /* border: solid; */
    border-radius: 15%;

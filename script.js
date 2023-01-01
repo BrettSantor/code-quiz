@@ -19,6 +19,7 @@ var scoreEl = document.querySelector(".score");
 var quizArea = document.querySelector(".qSpot");
 var choiceArea = document.querySelector(".cSpot");
 var userScore = 0; 
+var yourScore = document.querySelector(".yourScore");
 
 function startGame() {
     // hides start screen >
@@ -78,8 +79,8 @@ function checkAnswer(choice) {
     correctAnswer = allQuestions[Q].correct;
     if (choice === correctAnswer) {
         userScore += 15000;
-        console.log(userScore)
         //userScore + 15000;
+        
     } else {
         secondsLeft -= 10
         if(secondsLeft < 0){
@@ -97,7 +98,8 @@ function checkAnswer(choice) {
 
 function endGame() {
     document.querySelector(".quiz").classList.add("hide");
-    
+    document.querySelector(".end").classList.remove("hide");
+    document.querySelector(".yourScore").textContent= userScore
 
 }
 
