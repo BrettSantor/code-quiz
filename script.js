@@ -44,8 +44,7 @@ function setTimer() {
         timeEl.textContent = secondsLeft;
         if (secondsLeft === 0) {
             //clearInterval method stops the called action set in place by setInterval method
-            clearInterval(timerInterval);
-            endGame();
+            stopInterval();
         }
     }, 1000);
 }
@@ -63,9 +62,7 @@ function loadQuestions() {
     loadAnswers();
 }
 function loadAnswers() {
-    //var answer = allQuestions[Q].choices;
     choiceArea.innerHTML = "";
-    //choiceArea.innerHTML = answer;
     for (var i = 0; i < allQuestions[Q].choices.length; i++) {
         var btn = document.createElement("button");
         btn.value = allQuestions[Q].choices[i];
@@ -88,26 +85,23 @@ function checkAnswer(choice) {
     correctAnswer = allQuestions[Q].correct;
     if (choice === correctAnswer) {
         userScore += 15000;
-        //userScore + 15000;
         
     } else {
         secondsLeft -= 10
         if(secondsLeft < 0){
             secondsLeft = 0  
+            stopInterval();
+            endGame();
         }
     }
     Q++;
     if (Q === allQuestions.length) {
-    
-        endGame()
+        endGame();
     } else {
         loadQuestions();
     }
 }
 
-// if(secondsLeft === 0) {
-//     endGame();
-// }
 
 function namePrompt() {
     var initScore;
@@ -125,15 +119,18 @@ function endGame() {
     document.querySelector(".end").classList.remove("hide");
     document.querySelector(".yourScore").textContent= userScore;
     namePrompt();
-    // Q = 0;
-    // secondsLeft = 60;
+    stopInterval();
 }
 function roundTwo() {
-    stopInterval();
     Q = 0;
     secondsLeft = 60;
     userScore = 0;
     startGame();
+    setTimer();
+}
+
+function showHigh() {
+    document.querySelector(".leader").classList.remove("hide");
 }
 
 
@@ -155,5 +152,4 @@ document.querySelector(".again").addEventListener("click", roundTwo);
 //document.querySelector(".start-btn").addEventListener("click", loadAnswers);
 //start timer
 document.querySelector(".start-btn").addEventListener("click", setTimer);
-// document.querySelector(".again").addEventListener("click", clearInterval)
-// document.querySelector(".again").addEventListener("click", setTimer)
+document.querySelector(".high").addEventListener("click", showHigh);

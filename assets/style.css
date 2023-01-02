@@ -4,6 +4,9 @@
 .hide {
     display: none;
 }
+/* #leader {
+    display: none;
+} */
 .quiz p {
     /* border: solid; */
     text-align: end;
