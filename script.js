@@ -1,11 +1,11 @@
 //create objects with an array of keys to be called by index
 var allQuestions = [
-    { text: "question1", choices: ["a", "b", "c", "d"], correct: "c" },
-    { text: "question2", choices: ["a", "b", "c", "d"], correct: "d" },
-    { text: "question3", choices: ["a", "b", "c", "d"], correct: "b" },
-    { text: "question4", choices: ["a", "b", "c", "d"], correct: "c" },
-    { text: "question5", choices: ["a", "b", "c", "d"], correct: "d" },
-    { text: "question6", choices: ["a", "b", "c", "d"], correct: "a" },
+    { text: "Which is used to create an array?", choices: ["< >", "( )", "[ ]", "{ }"], correct: "[ ]" },
+    { text: "Inside which HTML element can we embed Javascript?", choices: ["<body>", "<javascript>", "<head>", "<script>"], correct: "<script>" },
+    { text: "How is data stored in an Object?", choices: ["Variables and Values", "Keys and Values", "Views and Likes", "Push and Splice"], correct: "Keys and Values" },
+    { text: "Which of these can be used to call a Javascript code snippet", choices: ["Process", "Triggering Event", "Function/Method", "Variable"], correct: "Function/Method" },
+    { text: "What is the index number of the first value in an array?", choices: ["one", "1", "2", "0"], correct: "0" },
+    { text: "What data type is 'this is a boolean' ?", choices: ["String", "Array", "Boolean", "Object"], correct: "String" },
 ];
 //variable to iterate through questions
 var Q = 0;
@@ -20,6 +20,8 @@ var quizArea = document.querySelector(".qSpot");
 var choiceArea = document.querySelector(".cSpot");
 var userScore = 0; 
 var yourScore = document.querySelector(".yourScore");
+var initScore;
+var savedScore;
 
 function startGame() {
     // hides start screen >
@@ -104,13 +106,15 @@ function checkAnswer(choice) {
 
 
 function namePrompt() {
-    var initScore;
+    
     var names= prompt("Please enter your initials:");
     if (names == null || names == "") {
         alert("Don't be ashamed!");
     } else {
         initScore = names + " " + userScore;
         document.querySelector(".highScore").textContent = initScore;
+        savedScore += initScore;
+        localStorage.setItem("savedScore", JSON.stringify(savedScore));
     }
 }
 
@@ -130,10 +134,11 @@ function roundTwo() {
 }
 
 function showHigh() {
+    var newHigh = localStorage.getItem("savedScore");
+    JSON.parse(newHigh);
     document.querySelector(".leader").classList.remove("hide");
 }
-
-
+// console.log(savedScore)
 //on click show first question >
 //append answer buttons to question >
 //add event listener to answer buttons ? >

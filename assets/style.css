@@ -1,5 +1,10 @@
+*{
+    /* margin: 0%; */
+}
+
 .start {
     text-align: center;
+    gap: 20px;
 }
 .hide {
     display: none;
@@ -17,11 +22,29 @@
 }
 .end p {
 text-align: center;
+height: 200px;
+}
+.scoreTitle {
+    font-weight: bolder;
+}
+.leader {
+    font-weight: bolder;
+}
+.butts {
+    text-align: center;
 }
 .qSpot {
-   /* border: solid; */
-   border-radius: 15%;
+    padding: 10px;
+   border: solid;
+   width: fit-content;
+   border-radius: 12px;
+   margin: auto;
+   margin-bottom: 5%;
+
 }
 .cSpot {
- background-color: orangered;  
+ background-color: orangered;
+ padding: 10px;
+ width: fit-content;
+ margin: auto;
 }
