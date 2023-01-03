@@ -1,3 +1,4 @@
+
 //create objects with an array of keys to be called by index
 var allQuestions = [
     { text: "Which is used to create an array?", choices: ["< >", "( )", "[ ]", "{ }"], correct: "[ ]" },
@@ -12,16 +13,17 @@ var Q = 0;
 //variable to target span tag for timer
 var timeEl = document.querySelector(".timer");
 //variable used to decrease time
-var secondsLeft = 60;
+
 //variable to target players score
 var scoreEl = document.querySelector(".score");
-
+var secondsLeft = 60;
 var quizArea = document.querySelector(".qSpot");
 var choiceArea = document.querySelector(".cSpot");
 var userScore = 0;
 var yourScore = document.querySelector(".yourScore");
 var initScore;
 var savedScore;
+var timerInterval;
 
 function startGame() {
     // hides start screen >
@@ -40,17 +42,17 @@ function setScore() {
 //create timer >
 function setTimer() {
     //setInterval method repeatedly executes code with a fixed delay each execution
-
-    var timerInterval = setInterval(function () {
+     timerInterval = setInterval(function () {
         secondsLeft--;
         timeEl.textContent = secondsLeft;
         if (secondsLeft <= 0) {
             //clearInterval method stops the called action set in place by setInterval method
             // stopInterval();
-            clearInterval(setTimer)
+            clearInterval(timerInterval)
+            endGame();
         }
     }, 1000);
- }
+}
 // function stopInterval() {
 //     clearInterval(setTimer);
 // }
@@ -72,7 +74,7 @@ function loadAnswers() {
         btn.textContent = allQuestions[Q].choices[i]
         btn.addEventListener("click", function () {
             var userChoice = this.value;
-            console.log(userChoice)
+            // console.log(userChoice)
             checkAnswer(userChoice)
         })
 
@@ -83,20 +85,12 @@ function loadAnswers() {
 }
 
 function checkAnswer(choice) {
-
     correctAnswer = allQuestions[Q].correct;
-    if (choice === correctAnswer) {
-        userScore += 15000;
-
+   if (choice === correctAnswer) {
+        userScore += 15075;
     } else {
         secondsLeft -= 10
-        if (secondsLeft < 0) {
-            secondsLeft = 0
-            // stopInterval();
-            clearInterval(setTimer)
-            endGame();
         }
-    }
     Q++;
     if (Q === allQuestions.length) {
         endGame();
@@ -124,8 +118,7 @@ function endGame() {
     document.querySelector(".end").classList.remove("hide");
     document.querySelector(".yourScore").textContent = userScore;
     namePrompt();
-    // stopInterval();
-    clearInterval(setTimer);
+    clearInterval(timerInterval);
 }
 function roundTwo() {
     Q = 0;
@@ -138,7 +131,12 @@ function roundTwo() {
 function showHigh() {
     var newHigh = localStorage.getItem("savedScore");
     JSON.parse(newHigh);
-    document.querySelector(".leader").classList.remove("hide");
+    document.querySelector(".highScore").textContent = newHigh
+    if (".leader hide") {
+        document.querySelector(".leader").classList.remove("hide");
+    } else {
+        document.querySelector(".leader").classList.add("hide");
+    }
 }
 // console.log(savedScore)
 //on click show first question >
