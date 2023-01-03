@@ -18,7 +18,7 @@ var scoreEl = document.querySelector(".score");
 
 var quizArea = document.querySelector(".qSpot");
 var choiceArea = document.querySelector(".cSpot");
-var userScore = 0; 
+var userScore = 0;
 var yourScore = document.querySelector(".yourScore");
 var initScore;
 var savedScore;
@@ -30,33 +30,33 @@ function startGame() {
     document.querySelector(".quiz").classList.remove("hide")
     //call function to load first question
     document.querySelector(".end").classList.add("hide")
-    
+
     loadQuestions();
 }
- //start score
+//start score
 function setScore() {
     scoreEl.textContent = userScore;
 }
 //create timer >
 function setTimer() {
     //setInterval method repeatedly executes code with a fixed delay each execution
-    
+
     var timerInterval = setInterval(function () {
         secondsLeft--;
         timeEl.textContent = secondsLeft;
-        if (secondsLeft === 0) {
+        if (secondsLeft <= 0) {
             //clearInterval method stops the called action set in place by setInterval method
-            stopInterval();
+            // stopInterval();
+            clearInterval(setTimer)
         }
     }, 1000);
-}
-
-function stopInterval(){
-    clearInterval(setTimer)
-}
+ }
+// function stopInterval() {
+//     clearInterval(setTimer);
+// }
 
 function loadQuestions() {
-    
+
     var question = allQuestions[Q].text;
 
     quizArea.innerHTML = "";
@@ -87,12 +87,13 @@ function checkAnswer(choice) {
     correctAnswer = allQuestions[Q].correct;
     if (choice === correctAnswer) {
         userScore += 15000;
-        
+
     } else {
         secondsLeft -= 10
-        if(secondsLeft < 0){
-            secondsLeft = 0  
-            stopInterval();
+        if (secondsLeft < 0) {
+            secondsLeft = 0
+            // stopInterval();
+            clearInterval(setTimer)
             endGame();
         }
     }
@@ -106,8 +107,8 @@ function checkAnswer(choice) {
 
 
 function namePrompt() {
-    
-    var names= prompt("Please enter your initials:");
+
+    var names = prompt("Please enter your initials:");
     if (names == null || names == "") {
         alert("Don't be ashamed!");
     } else {
@@ -121,9 +122,10 @@ function namePrompt() {
 function endGame() {
     document.querySelector(".quiz").classList.add("hide");
     document.querySelector(".end").classList.remove("hide");
-    document.querySelector(".yourScore").textContent= userScore;
+    document.querySelector(".yourScore").textContent = userScore;
     namePrompt();
-    stopInterval();
+    // stopInterval();
+    clearInterval(setTimer);
 }
 function roundTwo() {
     Q = 0;

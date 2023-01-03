@@ -1,50 +1,112 @@
-*{
+* {
     /* margin: 0%; */
 }
-
+/* title screen */
 .start {
     text-align: center;
-    gap: 20px;
 }
+
+.start h2 {
+    margin: 2%;
+}
+
+.start-btn {
+    margin: 2%;
+    width: fit-content;
+    border: none;
+    background-color: white;
+    font-size: larger;
+    font-weight: bold;
+    border-left: 6px solid lightgreen;
+    border-radius: 3px;
+    color: black;
+}
+
+.start-btn:hover {
+    transition: 1.5s;
+    box-shadow: inset 6.5em 0 lightgreen;
+    cursor: help;
+}
+
+/* used to hide sections */
 .hide {
     display: none;
 }
-/* #leader {
-    display: none;
-} */
+
+/* score and timer */
 .quiz p {
-    /* border: solid; */
     text-align: end;
 }
+
+/* wrapper of entire quiz section */
 .quiz {
-    /* border: dashed; */
     text-align: center;
 }
+
+/* final score and high scores */
 .end p {
-text-align: center;
-height: 200px;
+    text-align: center;
+    height: 200px;
 }
+
 .scoreTitle {
     font-weight: bolder;
+    font-size: larger;
 }
+
 .leader {
     font-weight: bolder;
+    font-size: larger;
 }
+
+/* play again and view high score buttons */
 .butts {
     text-align: center;
 }
+
+/* header where questions are posted */
 .qSpot {
     padding: 10px;
-   border: solid;
-   width: fit-content;
-   border-radius: 12px;
-   margin: auto;
-   margin-bottom: 5%;
+    border: solid;
+    width: fit-content;
+    border-radius: 12px;
+    margin: auto;
+    margin-bottom: 5%;
 
 }
+
+/* container where answers are posted */
 .cSpot {
- background-color: orangered;
- padding: 10px;
- width: fit-content;
- margin: auto;
+    padding: 10px;
+    width: fit-content;
+    margin: auto;
+}
+
+/* answer buttons */
+.test {
+    margin: 2px;
+    background-color: black;
+    color: gold;
+    border-radius: 12px;
+    font-size: larger;
+
+}
+
+.again,
+ .high {
+    margin: 2px;
+    border: none;
+    border-bottom: 3px solid green;
+    background-color: ghostwhite;
+    font-weight: bolder;
+    color: black;
+    border-radius: 12px;
+    font-size: larger;
+}
+
+.high:hover,
+.again:hover {
+    transition: 1.5s;
+    box-shadow: inset 100em 0 green;
+    color: ghostwhite;
 }
