@@ -108,8 +108,8 @@ function namePrompt() {
     } else {
         initScore = names + " " + userScore;
         document.querySelector(".highScore").textContent = initScore;
-        savedScore += initScore;
-        localStorage.setItem("savedScore", JSON.stringify(savedScore));
+        // savedScore += initScore;
+        localStorage.setItem(names, JSON.stringify(userScore));
     }
 }
 
@@ -129,8 +129,9 @@ function roundTwo() {
 }
 
 function showHigh() {
-    var newHigh = localStorage.getItem("savedScore");
-    JSON.parse(newHigh);
+    var newHigh = JSON.parse(localStorage.getItem("names"));
+    //  JSON.parse(names);
+    // console.log(localStorage.getItem("names"));
     document.querySelector(".highScore").textContent = newHigh
     if (".leader hide") {
         document.querySelector(".leader").classList.remove("hide");
@@ -146,9 +147,9 @@ function showHigh() {
 //if correct add to score >
 //if wrong decrement timer -10 seconds >
 //show next question >
-//when out of  questions or out of time end game
-//collect initials 
-//save score and initials to local storage
+//when out of  questions or out of time end game >
+//collect initials >
+//save score and initials to local storage >
 //when user hits high scores show list of high scores
 
 //runs start game function when the start button is clicked
