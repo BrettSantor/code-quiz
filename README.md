@@ -11,7 +11,7 @@
 
 ## Description
 
-[Visit the deployed site here](https://brettsantor.github.io/Santor-Services/)
+[Visit the deployed site here](https://brettsantor.github.io/code-quiz/)
 
 This is a code quiz mini game! Test your JavaScript knowledge but be careful! Answer wrong and you will lose precious time! Can you beat the clock?
 
