@@ -46,7 +46,7 @@
 /* final score and high scores */
 .end p {
     text-align: center;
-    height: 200px;
+    /* height: 200px; */
 }
 
 .scoreTitle {
@@ -57,6 +57,17 @@
 .leader {
     font-weight: bolder;
     font-size: larger;
+    height: 50px;
+}
+
+.highScore {
+    text-align: center;
+}
+
+.highScore {
+    list-style: "\1F47E";
+    padding-bottom: 2px;
+    list-style-position: inside;
 }
 
 /* play again and view high score buttons */
@@ -85,8 +96,8 @@
 /* answer buttons */
 .test {
     margin: 2px;
-    background-color: black;
-    color: gold;
+    background-color: purple;
+    color: ghostwhite;
     border-radius: 12px;
     font-size: larger;
 

@@ -21,17 +21,31 @@ var quizArea = document.querySelector(".qSpot");
 var choiceArea = document.querySelector(".cSpot");
 var userScore = 0;
 var yourScore = document.querySelector(".yourScore");
+var scoreBoard = document.querySelector(".highScore");
 var initScore;
 var savedScore;
 var timerInterval;
+var localScores = [];
+
+function init() {
+    
+    localScores = JSON.parse(localStorage.getItem("scoreObj"));
+
+    if (localScores === null) {
+    localScores = [];
+     }
+}
 
 function startGame() {
     // hides start screen >
-    document.querySelector(".start").classList.add("hide")
+    document.querySelector(".start").classList.add("hide");
     //show quiz screen >
-    document.querySelector(".quiz").classList.remove("hide")
+    document.querySelector(".quiz").classList.remove("hide");
     //call function to load first question
-    document.querySelector(".end").classList.add("hide")
+    document.querySelector(".end").classList.add("hide");
+
+    document.querySelector(".leader").classList.add("hide");
+    document.querySelector(".highScore").classList.add("hide");
 
     loadQuestions();
 }
@@ -42,20 +56,16 @@ function setScore() {
 //create timer >
 function setTimer() {
     //setInterval method repeatedly executes code with a fixed delay each execution
-     timerInterval = setInterval(function () {
+    timerInterval = setInterval(function () {
         secondsLeft--;
         timeEl.textContent = secondsLeft;
         if (secondsLeft <= 0) {
             //clearInterval method stops the called action set in place by setInterval method
-            // stopInterval();
             clearInterval(timerInterval)
             endGame();
         }
     }, 1000);
 }
-// function stopInterval() {
-//     clearInterval(setTimer);
-// }
 
 function loadQuestions() {
 
@@ -74,7 +84,6 @@ function loadAnswers() {
         btn.textContent = allQuestions[Q].choices[i]
         btn.addEventListener("click", function () {
             var userChoice = this.value;
-            // console.log(userChoice)
             checkAnswer(userChoice)
         })
 
@@ -86,11 +95,11 @@ function loadAnswers() {
 
 function checkAnswer(choice) {
     correctAnswer = allQuestions[Q].correct;
-   if (choice === correctAnswer) {
+    if (choice === correctAnswer) {
         userScore += 15075;
     } else {
         secondsLeft -= 10
-        }
+    }
     Q++;
     if (Q === allQuestions.length) {
         endGame();
@@ -106,10 +115,9 @@ function namePrompt() {
     if (names == null || names == "") {
         alert("Don't be ashamed!");
     } else {
-        initScore = names + " " + userScore;
-        document.querySelector(".highScore").textContent = initScore;
-        // savedScore += initScore;
-        localStorage.setItem(names, JSON.stringify(userScore));
+        initScore = { name: names, score: userScore };
+        localScores.push(initScore)
+        localStorage.setItem("scoreObj", JSON.stringify(localScores));
     }
 }
 
@@ -129,28 +137,24 @@ function roundTwo() {
 }
 
 function showHigh() {
-    var newHigh = JSON.parse(localStorage.getItem("names"));
-    //  JSON.parse(names);
-    // console.log(localStorage.getItem("names"));
-    document.querySelector(".highScore").textContent = newHigh
     if (".leader hide") {
         document.querySelector(".leader").classList.remove("hide");
-    } else {
-        document.querySelector(".leader").classList.add("hide");
     }
+     if(".highScore hide"){
+        document.querySelector(".highScore").classList.remove("hide");
+    }
+    scoreBoard.textContent = ""
+    var newHigh = JSON.parse(localStorage.getItem('scoreObj'));
+    console.log(newHigh)
+    for (i = 0; i < newHigh.length; i++) {
+
+        var scoreList = document.createElement("li");
+        scoreList.innerHTML = newHigh[i].name + ": " + newHigh[i].score;
+        scoreBoard.appendChild(scoreList);
+    }
+   
 }
-// console.log(savedScore)
-//on click show first question >
-//append answer buttons to question >
-//add event listener to answer buttons ? >
-//on click check for correct answer >
-//if correct add to score >
-//if wrong decrement timer -10 seconds >
-//show next question >
-//when out of  questions or out of time end game >
-//collect initials >
-//save score and initials to local storage >
-//when user hits high scores show list of high scores
+
 
 //runs start game function when the start button is clicked
 document.querySelector(".start-btn").addEventListener("click", startGame);
@@ -159,3 +163,4 @@ document.querySelector(".again").addEventListener("click", roundTwo);
 //start timer
 document.querySelector(".start-btn").addEventListener("click", setTimer);
 document.querySelector(".high").addEventListener("click", showHigh);
+init();
