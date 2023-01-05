@@ -111,7 +111,7 @@ function checkAnswer(choice) {
 
 function namePrompt() {
 
-    var names = prompt("Please enter your initials:");
+    var names = prompt("Please enter your Name:");
     if (names == null || names == "") {
         alert("Don't be ashamed!");
     } else {
