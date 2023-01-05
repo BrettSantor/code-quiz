@@ -15,13 +15,13 @@
 
 This is a code quiz mini game! Test your JavaScript knowledge but be careful! Answer wrong and you will lose precious time! Can you beat the clock?
 
-![](assets\img\startquiz.gif)
+![](./assets/img/startquiz.gif)
 
 ## Usage
 
 Answer question by clicking on the correct answer button and watch as your score increases. Answer all the question or run out of time and you will be prompted to enter your name. Then your name and score is saved in local storage and logged to our high scores board so you can show everyone you know your stuff!
 
-![](assets\img\highscore.gif)
+![](./assets/img/highscore.gif)
 
 ## Learning Points
 
